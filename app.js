@@ -10,6 +10,9 @@ var path = require('path');
 
 var app = express();
 
+//require our handler
+var urlHandler = require('./urlHandler');
+
 // all environments
 app.set('port', process.env.PORT || 3000);
 app.set('views', path.join(__dirname, 'views'));
@@ -30,6 +33,8 @@ if ('development' == app.get('env')) {
 app.get('/', function index(req, res) {
   res.redirect('/index.html');
 });
+
+app.post('/', urlHandler);
 
 
 http.createServer(app).listen(app.get('port'), function(){
