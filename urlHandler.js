@@ -6,7 +6,7 @@ module.exports = function(req, res) {
   if (isValid(url)) {
     determineNodeProperties(url, function(err, result) {
       if (err) {
-        res.send(400, {error: 'An error has occurecd for ' + url});
+        res.send(400, {error: 'An error has occurred for ' + url});
       } else {
         res.send(200, {message: result});
       }

@@ -1,6 +1,7 @@
 var request = require('request');
 var expressChecker = require('./checkers/express');
 var async = require('async');
+var _ = require('underscore');
 
 
 function handler(url, callback) {
@@ -23,9 +24,9 @@ function handler(url, callback) {
 
       async.map([expressChecker], runner, function(err, reasons) {
         console.log(reasons);
-        obj.reasons = reasons;
+        obj.reasons = _.filter(reasons, function(r) { return r.found; });
         if (obj.reasons.length > 0) {
-          obj.message = 'node activity detected';
+          obj.answer = 'node activity detected';
         }
         callback(null, obj);
       });

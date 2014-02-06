@@ -9,6 +9,7 @@
     "express": "3.4.8",
     "jade": "*",
     "request": "~2.33.0",
-    "async": "~0.2.10"
+    "async": "~0.2.10",
+    "underscore": "~1.5.2"
   }
 }
