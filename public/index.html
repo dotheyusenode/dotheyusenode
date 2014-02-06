@@ -46,7 +46,15 @@
 
       function writeMessage(r) {
         var md = getMD();
-        var ih = "<h3>" + r.answer + "</h3";
+        var ih = "<h3>" + r.answer + "</h3>";
+        if (r.reasons.length > 0) {
+          ih += "<ul>";
+          ih += r.reasons
+            .map(function(reason) {
+              return "<li><b>" + reason.name + "</b> " + reason.reasons.join('. ');
+            });
+          ih += "</ul>";
+        }
         md.innerHTML = ih;
       }
 
