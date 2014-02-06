@@ -7,27 +7,25 @@
     <meta name="description" content="Do they use node">
     <meta name="author" content="Will Laurance">
     <link rel="shortcut icon" href="/favicon.png">
-
     <title>Do They Use Node?</title>
-
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-
     <!-- Custom styles for this template -->
     <link href="/jumbotron-narrow.css" rel="stylesheet">
-
   </head>
 
   <body>
 
     <div class="container">
-      <div class="header">
-      </div>
-
       <div class="jumbotron">
         <h1>Do They Use Node?</h1>
         <p class="lead">Does that company, business, blog, whatever use any node frameworks to serve HTTP?</p>
-
+        <input id="URL"placeholder="enter URL" type="text" class="form-control">
+        <br/>
+        <button class="btn btn-success" id="checkButton">Check and See</button>
+        <div>
+          <p id="message"></p>
+        </div>
       </div>
       <div class="footer">
       </div>
