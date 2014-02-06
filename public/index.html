@@ -28,7 +28,7 @@
     </div> <!-- /container -->
     <script>
       function handleRequest(code, body) {
-        console.log(code, body);
+        alert(code + " " + JSON.stringify(body));
       }
 
       function makeRequest(url, cb) {
