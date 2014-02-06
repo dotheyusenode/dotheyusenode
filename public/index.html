@@ -19,15 +19,43 @@
     <div class="container">
       <div class="jumbotron">
         <h1>Do They Use Node?</h1>
-        <input id="URL"placeholder="enter URL" type="text" class="form-control">
+        <input id="URL" placeholder="enter URL" type="text" class="form-control">
         <br/>
         <button class="btn btn-success" id="checkButton">Check and See</button>
-        <div>
-          <p id="message"></p>
-        </div>
       </div>
       <div class="footer">
       </div>
     </div> <!-- /container -->
+    <script>
+      function handleRequest(code, body) {
+        console.log(code, body);
+      }
+
+      function makeRequest(url, cb) {
+        var http = new XMLHttpRequest();
+        http.open("POST", "/?url=" + encodeURIComponent(url), true);
+        http.onreadystatechange = function() {
+          if (http.readyState == 4) {
+            handleRequest(http.status, JSON.parse(http.responseText));
+          }
+        };
+        http.send(null);
+      }
+
+      function getURL() {
+        return document.getElementById('URL').value;
+      }
+
+      function addListeners() {
+        var checkButton = document.getElementById('checkButton');
+        checkButton.onclick = function() {
+          var url = getURL();
+          if (url !== "") {
+            makeRequest(url, handleRequest);
+          }
+        };
+      }
+      addListeners();
+    </script>
   </body>
 </html>
