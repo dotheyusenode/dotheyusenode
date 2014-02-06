@@ -23,12 +23,35 @@
         <br/>
         <button class="btn btn-success" id="checkButton">Check and See</button>
       </div>
+      <div>
+        <p id="message"></p>
+      </div>
       <div class="footer">
       </div>
     </div> <!-- /container -->
     <script>
+      function getMD() {
+        return document.getElementById('message');
+      }
+      function clearMessage() {
+        getMD().innerHTML = "";
+      }
+      function writeMessage(message) {
+        var md = getMD();
+        md.innerHTML = message;
+      }
+
+      function writeError(error) {
+        var md = getMD();
+        md.innerHTML = error;
+      }
+
       function handleRequest(code, body) {
-        alert(code + " " + JSON.stringify(body));
+        if (code === 200) {
+          writeMessage(body.message);
+        } else {
+          writeError(body.error);
+        }
       }
 
       function makeRequest(url, cb) {
