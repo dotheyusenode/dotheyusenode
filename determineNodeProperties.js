@@ -1,6 +1,7 @@
 var request = require('request');
 var expressChecker = require('./checkers/express');
 var sailsChecker = require('./checkers/sails');
+var koaChecker = require('./checkers/koa');
 var async = require('async');
 var _ = require('underscore');
 
@@ -22,8 +23,13 @@ function handler(url, callback) {
     if (e) {
       return callback(e);
     } else {
+      var checkers = [
+        expressChecker,
+        sailsChecker,
+        koaChecker
+      ];
 
-      async.map([expressChecker, sailsChecker], runner, function(err, reasons) {
+      async.map(checkers, runner, function(err, reasons) {
         obj.reasons = _.filter(reasons, function(r) { return r.found; });
         if (obj.reasons.length > 0) {
           obj.answer = 'node activity detected';
