@@ -24,6 +24,7 @@
         <button class="btn btn-success" id="checkButton">Check and See</button>
       </div>
       <div>
+        <p id="title-heading"></p>
         <p id="message"></p>
       </div>
       <div class="footer">
@@ -33,12 +34,20 @@
       function getMD() {
         return document.getElementById('message');
       }
+
+      function getTD() {
+        return document.getElementById('title-heading');
+      }
+
       function clearMessage() {
         getMD().innerHTML = "";
+        getTD().innerHTML = "";
       }
-      function writeMessage(message) {
+
+      function writeMessage(r) {
         var md = getMD();
-        md.innerHTML = message;
+        var ih = "<h3>" + r.answer + "</h3";
+        md.innerHTML = ih;
       }
 
       function writeError(error) {
@@ -46,7 +55,13 @@
         md.innerHTML = error;
       }
 
+      function writeTitle() {
+        getTD().innerHTML = "<h2>Results for " + getURL() + "</h2>";
+      }
+
       function handleRequest(code, body) {
+        writeTitle();
+
         if (code === 200) {
           writeMessage(body.message);
         } else {
@@ -73,6 +88,7 @@
         var checkButton = document.getElementById('checkButton');
         var urlField = document.getElementById('URL');
         function handler() {
+          clearMessage();
           var url = getURL();
           if (url !== "") {
             makeRequest(url, handleRequest);
