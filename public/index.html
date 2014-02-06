@@ -71,12 +71,20 @@
 
       function addListeners() {
         var checkButton = document.getElementById('checkButton');
-        checkButton.onclick = function() {
+        var urlField = document.getElementById('URL');
+        function handler() {
           var url = getURL();
           if (url !== "") {
             makeRequest(url, handleRequest);
           }
         };
+        checkButton.onclick = handler;
+        urlField.onkeydown = function(event) {
+          if (event.keyCode == 13) {
+            handler();
+          }
+        };
+
       }
       addListeners();
     </script>
