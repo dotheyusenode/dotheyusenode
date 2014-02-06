@@ -32,7 +32,7 @@ function handler(url, callback) {
       ];
 
       async.map(checkers, runner, function(err, reasons) {
-        obj.reasons = _.filter(_.flatten(reasons), function(r) { return r.found; });
+        obj.reasons = _.filter(_.flatten(reasons), function(r) { return r && r.found; });
         if (obj.reasons.length > 0) {
           obj.answer = 'node activity detected';
         }
