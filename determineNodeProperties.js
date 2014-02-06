@@ -23,7 +23,6 @@ function handler(url, callback) {
     } else {
 
       async.map([expressChecker], runner, function(err, reasons) {
-        console.log(reasons);
         obj.reasons = _.filter(reasons, function(r) { return r.found; });
         if (obj.reasons.length > 0) {
           obj.answer = 'node activity detected';
