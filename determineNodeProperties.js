@@ -1,5 +1,5 @@
 var request = require('request');
-var xPowBy = require('./checkers/x-powered-by.js');
+var headers = require('./checkers/headers.js');
 var jsSourceCheckers = require('./checkers/needsjs');
 var async = require('async');
 var _ = require('underscore');
@@ -23,7 +23,7 @@ function handler(url, callback) {
       return callback(e);
     } else {
       var checkers = [
-        xPowBy,
+        headers,
         jsSourceCheckers
       ];
 
