@@ -1,4 +1,5 @@
 var coffeescript = require('./coffeescript.js');
+var browserify = require('./browserify.js')
 var cheerio = require('cheerio');
 var _ = require('underscore');
 var request = require('request');
@@ -37,7 +38,7 @@ function handler(r, b, cb) {
       return cb(err);
     } else {
       var pairs = _.zip(scripts, results);
-      var examiners = [coffeescript];
+      var examiners = [coffeescript, browserify];
       async.map(examiners, examine(pairs), cb);
     }
   });
