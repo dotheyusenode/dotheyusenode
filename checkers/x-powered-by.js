@@ -2,7 +2,7 @@ var _ = require('underscore');
 
 var frameworks = [
   {name: 'express.js', s: "express"},
-  {name: 'koa'},
+  {name: 'koa.js', s: 'koa'},
   {name: 'sails.js', s: "sails"}
 ]
 
@@ -15,7 +15,7 @@ module.exports = function(r, body, cb) {
       found: false,
       reasons: []
     }
-    if (xPow && xPow.toLowerCase().indexOf(fr.s || fr.name) !== -1) {
+    if (xPow && xPow.toLowerCase().indexOf(fr.s) !== -1) {
       checker.found = true
       checker.reasons.push('Found X-Powered-By: ' + xPow + ' header in response')
     }
