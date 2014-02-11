@@ -9,7 +9,21 @@ function handler(r, b, cb) {
   var scripts = _.filter(
     _.pluck(_.pluck($('script'), 'attribs'), 'src'),
     function(e) { return e;});
-  async.map(scripts, request, function(err, results) {
+  scripts = _.map(scripts, function(script) {
+    if (script.indexOf('http') === -1) {
+      var uri = r.request.uri;
+      return uri.protocol + '//' + uri.host + '/' + script;
+    }
+    return script;
+  });
+
+  function getScript(s, cb) {
+    request(s, function(e,r,b) {
+      cb(e,b);
+    });
+  }
+
+  async.map(scripts, getScript, function(err, results) {
     function examine(pairs) {
       return function(e, cbe) {
         e({
