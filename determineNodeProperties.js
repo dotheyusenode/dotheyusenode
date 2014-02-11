@@ -1,7 +1,5 @@
 var request = require('request');
-var expressChecker = require('./checkers/express');
-var sailsChecker = require('./checkers/sails');
-var koaChecker = require('./checkers/koa');
+var xPowBy = require('./checkers/x-powered-by.js');
 var jsSourceCheckers = require('./checkers/needsjs');
 var async = require('async');
 var _ = require('underscore');
@@ -25,9 +23,7 @@ function handler(url, callback) {
       return callback(e);
     } else {
       var checkers = [
-        expressChecker,
-        sailsChecker,
-        koaChecker,
+        xPowBy,
         jsSourceCheckers
       ];
 
