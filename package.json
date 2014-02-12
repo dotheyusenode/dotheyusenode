@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node app.js"
+    "start": "node app.js",
+    "test": "./node_modules/.bin/mocha"
   },
   "dependencies": {
     "express": "3.4.8",
@@ -14,5 +15,9 @@
     "cheerio": "~0.13.1",
     "coffeescript-detector": "0.0.1",
     "browserify-detector": "0.0.1"
+  },
+  "devDependencies": {
+    "should": "~3.1.2",
+    "mocha": "~1.17.1"
   }
 }
