@@ -11,7 +11,7 @@
     "jade": "*",
     "request": "~2.33.0",
     "async": "~0.2.10",
-    "underscore": "~1.5.2",
+    "underscore": "~1.6.0",
     "cheerio": "~0.13.1",
     "coffeescript-detector": "0.0.1",
     "browserify-detector": "0.0.1"
