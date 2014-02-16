@@ -41,6 +41,23 @@ describe('do they use node?', function(){
     })
   })
 
-  it('should return browserify reasons for substack.net')
+  function answer(r,b,done) {
+    r.statusCode.should.be.equal(200)
+    b.should.have.property('message')
+    b.message.should.have.property('reasons')
+    var reasons = b.message.reasons
+    reasons.length.should.be.equal(1)
+    done()
+  }
+
+  it(
+    'should return browserify reasons for substack.net',
+    function(done) {
+      request.post(host, ops({qs: { url: 'substack.net' }}),
+        function(e,r,b) {
+          answer(r,b,done)
+        })
+    }
+  )
 
 })
