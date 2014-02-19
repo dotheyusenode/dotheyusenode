@@ -79,10 +79,12 @@
       }
 
       function makeRequest(url, cb) {
+        console.log(url);
         var http = new XMLHttpRequest();
         http.open("POST", "/?url=" + encodeURIComponent(url), true);
         http.onreadystatechange = function() {
           if (http.readyState == 4) {
+            console.log(http.responseText)
             handleRequest(http.status, JSON.parse(http.responseText));
           }
         };
