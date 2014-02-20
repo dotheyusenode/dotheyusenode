@@ -1,5 +1,7 @@
 /* app css stylesheet */
-
+body {
+  font-family: 'Archivo Black', sans-serif;
+}
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
