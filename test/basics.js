@@ -3,6 +3,9 @@ var request = require('request')
 var should = require('should')
 var host = require('./host')
 
+var async = require('async')
+var _ = require('underscore')
+
 describe('do they use node?', function(){
   this.timeout(5000)
   function ops(q) {
@@ -80,6 +83,29 @@ describe('do they use node?', function(){
         })
       })
     })
+  })
+
+  it('should get a list of recently hit urls with tty', function(done) {
+    var urls = ['substack.net', 'wlaurance.com', 'github.com',
+      'ebay.com', 'amazon.com', 'turtles.com']
+
+    function r(u,cb) {
+      request(host, ops({qs: {url: u}}), cb)
+    }
+
+    function testCache() {
+      request.get(host + '/cache', ops(), function(e,r,b) {
+        r.statusCode.should.be.equal(200)
+        b.should.have.property('length')
+        _.each(b, function(hit) {
+          hit.should.have.property('url')
+          hit.should.have.property('ttl')
+        })
+        done()
+      });
+    }
+
+    async.each(urls, r, testCache)
   })
 
 })
