@@ -6,6 +6,7 @@
 var express = require('express');
 var http = require('http');
 var path = require('path');
+var fs = require('fs')
 
 var app = express();
 
@@ -32,7 +33,17 @@ if ('development' === app.get('env')) {
 }
 
 app.get('/', function index(req, res) {
-  res.redirect('/index.html');
+  if (req.query.url) {
+    return urlHandler(res,res)
+  } else {
+    fs.readFile('./app/old-index.html', function(err, bytes) {
+      if (err) {
+        res.send(404);
+      } else {
+        res.send(bytes.toString());
+      }
+    });
+  }
 });
 
 app.post('/', urlHandler);

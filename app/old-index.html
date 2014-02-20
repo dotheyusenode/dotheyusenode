@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Do they use node">
+    <meta name="author" content="Will Laurance">
+    <link rel="shortcut icon" href="/favicon.png">
+    <title>Do They Use Node?</title>
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
+    <!-- Custom styles for this template -->
+    <link href="/css/jumbotron-narrow.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Do They Use Node?</h1>
+        <input id="URL" placeholder="enter URL" type="text" class="form-control">
+        <br/>
+        <button class="btn btn-success" id="checkButton">Check and See</button>
+      </div>
+      <div>
+        <p id="title-heading"></p>
+        <p id="message"></p>
+      </div>
+      <div class="footer">
+        <a href="https://github.com/wlaurance/dotheyusenode" target="_blank">Its on Github</a>
+      </div>
+    </div> <!-- /container -->
+    <script>
+      function getMD() {
+        return document.getElementById('message');
+      }
+
+      function getTD() {
+        return document.getElementById('title-heading');
+      }
+
+      function clearMessage() {
+        getMD().innerHTML = "";
+        getTD().innerHTML = "";
+      }
+
+      function writeMessage(r) {
+        var md = getMD();
+        var ih = "<h3>" + r.answer + "</h3>";
+        if (r.reasons.length > 0) {
+          ih += "<ul>";
+          ih += r.reasons
+            .map(function(reason) {
+              return "<li><b>" + reason.name + "</b> " + reason.reasons.join('. ');
+            });
+          ih += "</ul>";
+        }
+        md.innerHTML = ih;
+      }
+
+      function writeError(error) {
+        var md = getMD();
+        md.innerHTML = error;
+      }
+
+      function writeTitle() {
+        getTD().innerHTML = "<h2>Results for " + getURL() + "</h2>";
+      }
+
+      function handleRequest(code, body) {
+        writeTitle();
+
+        if (code === 200) {
+          writeMessage(body.message);
+        } else {
+          writeError(body.error);
+        }
+      }
+
+      function makeRequest(url, cb) {
+        var http = new XMLHttpRequest();
+        http.open("POST", "/?url=" + encodeURIComponent(url), true);
+        http.onreadystatechange = function() {
+          if (http.readyState == 4) {
+            handleRequest(http.status, JSON.parse(http.responseText));
+          }
+        };
+        http.send(null);
+      }
+
+      function getURL() {
+        return document.getElementById('URL').value;
+      }
+
+      function addListeners() {
+        var checkButton = document.getElementById('checkButton');
+        var urlField = document.getElementById('URL');
+        function handler() {
+          clearMessage();
+          var url = getURL();
+          if (url !== "") {
+            makeRequest(url, handleRequest);
+          }
+        };
+        checkButton.onclick = handler;
+        urlField.onkeydown = function(event) {
+          if (event.keyCode == 13) {
+            handler();
+          }
+        };
+
+      }
+      addListeners();
+    </script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-47841666-1', 'dotheyusenode.herokuapp.com');
+      ga('send', 'pageview');
+
+    </script>
+  </body>
+</html>
