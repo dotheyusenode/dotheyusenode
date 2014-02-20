@@ -15,7 +15,8 @@
     "cheerio": "~0.13.1",
     "coffeescript-detector": "0.0.1",
     "browserify-detector": "0.0.1",
-    "src": "~0.1.0"
+    "src": "~0.1.0",
+    "redis-url": "~0.2.0"
   },
   "devDependencies": {
     "should": "~3.1.2",
