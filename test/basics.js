@@ -1,10 +1,10 @@
 var start = require('./start')
 var request = require('request')
 var should = require('should')
+var host = require('./host')
 
 describe('do they use node?', function(){
   this.timeout(5000)
-  var host = 'http://localhost:3000'
   function ops(q) {
     if (!q) {
       q = {}
@@ -59,5 +59,22 @@ describe('do they use node?', function(){
         })
     }
   )
+
+  it('should cache results making the second request super fast', function(done) {
+    var target = "twitter.com"
+    function mr(cb) {
+      request.post(host, ops({qs: {url: target}}), cb)
+    }
+    var m1 = new Date()
+    mr(function() {
+      m1 = new Date() - m1
+      var m2 = new Date()
+      mr(function() {
+        m2 = new Date() - m2
+        m2.should.be.below(m1 / 2)
+        done()
+      })
+    })
+  })
 
 })
