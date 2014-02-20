@@ -65,14 +65,19 @@ describe('do they use node?', function(){
     function mr(cb) {
       request.post(host, ops({qs: {url: target}}), cb)
     }
-    var m1 = new Date()
-    mr(function() {
-      m1 = new Date() - m1
-      var m2 = new Date()
+    function md(cb) {
+      request.del(host, ops({qs: {url: target}}), cb)
+    }
+    md(function() {
+      var m1 = new Date()
       mr(function() {
-        m2 = new Date() - m2
-        m2.should.be.below(m1 / 2)
-        done()
+        m1 = new Date() - m1
+        var m2 = new Date()
+        mr(function() {
+          m2 = new Date() - m2
+          m2.should.be.below(m1 / 2)
+          done()
+        })
       })
     })
   })
