@@ -8,3 +8,6 @@ Do they use node?
 * express.js
 * sails.js
 * koa
+* ecstatic
+* CoffeeScript Compiled JavaScript
+* Browserify prepared JavaScript
