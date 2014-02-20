@@ -3,16 +3,14 @@ var headers = require('./checkers/headers.js');
 var jsSourceCheckers = require('./checkers/needsjs');
 var async = require('async');
 var _ = require('underscore');
-
+var cache = require('./cache')
 
 function handler(url, callback) {
   var obj = {
     answer: 'Maybe, but we cannot tell',
     reasons: []
   };
-  if (url.indexOf('http') === -1) {
-    url = 'http://' + url;
-  }
+
   request(url, function(e,r,b) {
 
     function runner(task, cb) {
@@ -32,11 +30,24 @@ function handler(url, callback) {
         if (obj.reasons.length > 0) {
           obj.answer = 'node activity detected';
         }
-        callback(null, obj);
+        cache.set(url, JSON.stringify(obj), function() {
+          callback(null, obj);
+        })
       });
 
     }
   });
 }
 
-module.exports = handler;
+module.exports = function(url, callback) {
+  if (url.indexOf('http') === -1) {
+    url = 'http://' + url;
+  }
+  cache.get(url, function(err, value) {
+    if (value) {
+      callback(null, JSON.parse(value))
+    } else {
+      handler(url, callback)
+    }
+  })
+}
