@@ -4,6 +4,7 @@ var jsSourceCheckers = require('./checkers/needsjs');
 var async = require('async');
 var _ = require('underscore');
 var cache = require('./cache')
+var normalizeUrl = require('./normalizeUrl')
 
 function handler(url, callback) {
   var obj = {
@@ -40,9 +41,7 @@ function handler(url, callback) {
 }
 
 module.exports = function(url, callback) {
-  if (url.indexOf('http') === -1) {
-    url = 'http://' + url;
-  }
+  url = normalizeUrl(url)
   cache.get(url, function(err, value) {
     if (value) {
       callback(null, JSON.parse(value))

@@ -37,6 +37,18 @@ app.get('/', function index(req, res) {
 
 app.post('/', urlHandler);
 
+app.delete('/', function(req,res) {
+  if (req.query.url) {
+    require('./cache').del(
+      require('./normalizeUrl')(req.query.url),
+      function() {
+        res.send(200)
+      }
+    )
+  } else {
+    res.send(404);
+  }
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log('Express server listening on port ' + app.get('port'));
