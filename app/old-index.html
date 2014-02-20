@@ -81,7 +81,7 @@
 
       function makeRequest(url, cb) {
         var http = new XMLHttpRequest();
-        http.open("POST", "/?url=" + encodeURIComponent(url), true);
+        http.open("GET", "/?url=" + encodeURIComponent(url), true);
         http.onreadystatechange = function() {
           if (http.readyState == 4) {
             handleRequest(http.status, JSON.parse(http.responseText));
