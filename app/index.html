@@ -2,19 +2,22 @@
 <html lang="en" ng-app="myApp">
 <head>
   <meta charset="utf-8">
+  <title>node?js</title>
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Do they use node">
+  <meta name="description" content="does it use node?js">
   <meta name="author" content="Will Laurance, Meredith Myers">
+
   <link rel="shortcut icon" href="/favicon.png">
-  <!-- Bootstrap core CSS -->
+
+  <!-- Styling -->
   <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css">
-  <!-- Custom styles for this template -->
   <link href="/css/jumbotron-narrow.css" rel="stylesheet">
   <link rel="stylesheet" href="css/app.css"/>
 </head>
 
 <body>
+
 <div ng-view class="view-frame"></div>
 
     <script>
@@ -102,16 +105,6 @@
       addListeners();
     </script>
 
-    <script>
-      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-      ga('create', 'UA-47841666-1', 'dotheyusenode.herokuapp.com');
-      ga('send', 'pageview');
-
-    </script>
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
   -->
@@ -122,5 +115,16 @@
   <script src="js/controllers.js"></script>
   <script src="js/filters.js"></script>
   <script src="js/directives.js"></script>
+
+    <script>
+      (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+      (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+      m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+      })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+      ga('create', 'UA-47841666-1', 'dotheyusenode.herokuapp.com');
+      ga('send', 'pageview');
+
+    </script>
 </body>
 </html>
