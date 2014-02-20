@@ -27,14 +27,14 @@ describe('do they use node?', function(){
   }
 
   it('should return json', function(done){
-    request.post(host, ops({qs: { url: 'www.google.com' }}), function(e,r,b) {
+    request(host, ops({qs: { url: 'www.google.com' }}), function(e,r,b) {
       if (e) { throw e }
       noAnswer(r,b,done)
    })
   })
 
   it('should return no reasons for google.com', function(done){
-    request.post(host, ops({qs: { url: 'www.google.com' }}),
+    request(host, ops({qs: { url: 'www.google.com' }}),
       function(e,r,b) {
         if (e) { throw e }
         noAnswer(r,b,done)
@@ -53,7 +53,7 @@ describe('do they use node?', function(){
   it(
     'should return browserify reasons for substack.net',
     function(done) {
-      request.post(host, ops({qs: { url: 'substack.net' }}),
+      request(host, ops({qs: { url: 'substack.net' }}),
         function(e,r,b) {
           answer(r,b,done)
         })
@@ -63,7 +63,7 @@ describe('do they use node?', function(){
   it('should cache results making the second request super fast', function(done) {
     var target = "twitter.com"
     function mr(cb) {
-      request.post(host, ops({qs: {url: target}}), cb)
+      request(host, ops({qs: {url: target}}), cb)
     }
     function md(cb) {
       request.del(host, ops({qs: {url: target}}), cb)

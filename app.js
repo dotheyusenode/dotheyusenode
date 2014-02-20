@@ -34,7 +34,7 @@ if ('development' === app.get('env')) {
 
 app.get('/', function index(req, res) {
   if (req.query.url) {
-    return urlHandler(res,res)
+    return urlHandler(req,res)
   } else {
     fs.readFile('./app/old-index.html', function(err, bytes) {
       if (err) {
@@ -45,8 +45,6 @@ app.get('/', function index(req, res) {
     });
   }
 });
-
-app.post('/', urlHandler);
 
 app.delete('/', function(req,res) {
   if (req.query.url) {
