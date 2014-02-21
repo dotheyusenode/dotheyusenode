@@ -6,7 +6,6 @@
 var express = require('express')
 var http = require('http')
 var path = require('path')
-var fs = require('fs')
 
 var app = express()
 
@@ -26,8 +25,10 @@ app.use(express.logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded())
 app.use(express.methodOverride())
+app.use(require('connect-assets')({
+  helperContext: app.locals
+}))
 app.use(app.router)
-app.use(require('connect-assets')())
 app.use(express.static(path.join(__dirname, 'app')))
 
 // development only
