@@ -59,52 +59,7 @@
         getTD().innerHTML = "<h2>Results for " + getURL() + "</h2>";
       }
 
-      function handleRequest(code, body) {
-        writeTitle();
 
-        if (code === 200) {
-          writeMessage(body.message);
-        } else {
-          writeError(body.error);
-        }
-      }
-
-      function makeRequest(url, cb) {
-        console.log(url);
-        var http = new XMLHttpRequest();
-        http.open("GET", "/?url=" + encodeURIComponent(url), true);
-        http.onreadystatechange = function() {
-          if (http.readyState == 4) {
-            console.log(http.responseText)
-            handleRequest(http.status, JSON.parse(http.responseText));
-          }
-        };
-        http.send(null);
-      }
-
-      function getURL() {
-        return document.getElementById('URL').value;
-      }
-
-      function addListeners() {
-        var checkButton = document.getElementById('checkButton');
-        var urlField = document.getElementById('URL');
-        function handler() {
-          clearMessage();
-          var url = getURL();
-          if (url !== "") {
-            makeRequest(url, handleRequest);
-          }
-        };
-        checkButton.onclick = handler;
-        urlField.onkeydown = function(event) {
-          if (event.keyCode == 13) {
-            handler();
-          }
-        };
-
-      }
-      addListeners();
     </script>
 
   <!-- In production use:
