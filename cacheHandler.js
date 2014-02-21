@@ -1,7 +1,7 @@
 var async = require('async')
+var client = require('redis-url').connect(require('./red'))
 
 module.exports = function(req, res) {
-  var client = require('redis-url').connect(require('./red'))
 
   function handleKeys(err, keys) {
     if (err) {
