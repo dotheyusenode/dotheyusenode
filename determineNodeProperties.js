@@ -8,6 +8,7 @@ var normalizeUrl = require('./normalizeUrl')
 
 function handler(url, callback) {
   var obj = {
+    url: url,
     answer: 'Maybe, but we cannot tell',
     reasons: []
   };
