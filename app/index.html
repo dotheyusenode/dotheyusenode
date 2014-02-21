@@ -20,47 +20,7 @@
 
 <body>
 
-<div ng-view class="view-frame"></div>
-
-    <script>
-      function getMD() {
-        return document.getElementById('message');
-      }
-
-      function getTD() {
-        return document.getElementById('title-heading');
-      }
-
-      function clearMessage() {
-        getMD().innerHTML = "";
-        getTD().innerHTML = "";
-      }
-
-      function writeMessage(r) {
-        var md = getMD();
-        var ih = "<h3>" + r.answer + "</h3>";
-        if (r.reasons.length > 0) {
-          ih += "<ul>";
-          ih += r.reasons
-            .map(function(reason) {
-              return "<li><b>" + reason.name + "</b> " + reason.reasons.join('. ');
-            });
-          ih += "</ul>";
-        }
-        md.innerHTML = ih;
-      }
-
-      function writeError(error) {
-        var md = getMD();
-        md.innerHTML = error;
-      }
-
-      function writeTitle() {
-        getTD().innerHTML = "<h2>Results for " + getURL() + "</h2>";
-      }
-
-
-    </script>
+  <div ng-view class="view-frame"></div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>

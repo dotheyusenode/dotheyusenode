@@ -5,9 +5,15 @@
     <br/>
     <button class="btn btn-success" ng-click="check()">Find out now</button>
   </div>
-  <div>
-    <p id="title-heading"></p>
-    <p id="message"></p>
+  <div ng-show="displayResult">
+    <h2>Results for {{resultUrl}}</h2>
+    <p>{{message}}</p>
+    <ul>
+      <li ng-repeat="reason in reasons">{{reason}}</li>
+    </ul>
+  </div>
+  <div ng-show="displayError">
+    <p>{{errorMsg}}</p>
   </div>
   <div class="footer">
     <a href="https://github.com/wlaurance/dotheyusenode"
