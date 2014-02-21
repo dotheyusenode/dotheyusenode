@@ -16,7 +16,8 @@
     "coffeescript-detector": "0.0.1",
     "browserify-detector": "0.0.1",
     "src": "~0.1.0",
-    "redis-url": "~0.2.0"
+    "redis-url": "~0.2.0",
+    "connect-assets": "git://github.com/adunkman/connect-assets#v3"
   },
   "devDependencies": {
     "should": "~3.1.2",
