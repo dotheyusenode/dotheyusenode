@@ -2,12 +2,12 @@
 
 
 // Declare app level module which depends on filters, and services
-var myApp = angular.module('myApp', [
+var nodeCheck = angular.module('nodeCheck', [
   'ngRoute',
-  'myApp.filters',
-  'myApp.services',
-  'myApp.directives',
-  'myApp.controllers'
+  'nodeCheck.filters',
+  'nodeCheck.services',
+  'nodeCheck.directives',
+  'nodeCheck.controllers'
 ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.

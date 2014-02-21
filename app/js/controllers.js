@@ -2,7 +2,7 @@
 
 /* Controllers */
 
-angular.module('myApp.controllers', []).
+angular.module('nodeCheck.controllers', []).
   controller('AppCtrl', function($scope, $http) {
     $scope.website = {url: ''};
     $scope.displayResult = false;
