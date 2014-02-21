@@ -3,11 +3,11 @@
     <h1>node?js</h1>
     <input name="website.url" ng-model="website.url" placeholder="enter URL" type="text" class="form-control">
     <br/>
-    <button class="btn btn-success" ng-click="check()">Find out now</button>
+    <button class="btn btn-primary" ng-click="check()">Find out now</button>
   </div>
   <div ng-show="displayResult">
     <h3>Results for {{resultUrl}}</h3>
-    <img ng-src={{img}} style="width: 50pxpx; height: 50px;">
+    <img class="resultImg" ng-src={{img}}>
     <p>{{message}}</p>
     <ul>
       <li ng-repeat="reason in reasons">{{reason}}</li>
@@ -17,7 +17,6 @@
     <p>{{errorMsg}}</p>
   </div>
   <div class="footer">
-    <a href="https://github.com/wlaurance/dotheyusenode"
-      target="_blank">It's on Github</a>
+
   </div>
 </div>

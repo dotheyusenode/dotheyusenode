@@ -1,6 +1,20 @@
 /* app css stylesheet */
 body {
   font-family: 'Archivo Black', sans-serif;
+  background-color: #e3ebf6;
+  color: #224266;
+}
+.resultImg {
+  width: 50px;
+  height: 50px;
+}
+.btn-primary {
+  background-color: #b03b69;
+  border-color: #b03b69;
+}
+.btn-primary:hover, .btn-primary:focus {
+  background-color: #a93860;
+  border-color: #a93860;
 }
 .menu {
   list-style: none;
