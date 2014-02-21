@@ -21,7 +21,8 @@ angular.module('nodeCheck.controllers', []).
           $scope.displayError = false;
           $scope.resultUrl = data.message.url;
           $scope.message = data.message.answer;
-          $scope.reasons = data.message.reasons[0].reasons;
+          if(data.message.reasons.length > 0)
+            $scope.reasons = data.message.reasons[0].reasons;
         }).
         error(function(data, status, headers, config) {
           $scope.displayError = true;
