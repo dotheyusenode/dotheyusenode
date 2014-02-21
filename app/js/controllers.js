@@ -21,6 +21,7 @@ angular.module('nodeCheck.controllers', []).
           $scope.displayError = false;
           $scope.resultUrl = data.message.url;
           $scope.message = data.message.answer;
+          $scope.setImage($scope.message);
           if(data.message.reasons.length > 0)
             $scope.reasons = data.message.reasons[0].reasons;
         }).
@@ -29,5 +30,11 @@ angular.module('nodeCheck.controllers', []).
           $scope.displayResult = false;
           $scope.errorMsg = "Sorry, an error "+status+" occured";
         });
+    }
+    $scope.setImage = function(message) {
+      if(message.indexOf("activity detected") !== -1)
+        $scope.img = "/img/check.png";
+      else
+        $scope.img = "/img/question.png";
     }
   });

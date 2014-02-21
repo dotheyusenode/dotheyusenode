@@ -6,7 +6,8 @@
     <button class="btn btn-success" ng-click="check()">Find out now</button>
   </div>
   <div ng-show="displayResult">
-    <h2>Results for {{resultUrl}}</h2>
+    <h3>Results for {{resultUrl}}</h3>
+    <img ng-src={{img}} style="width: 50pxpx; height: 50px;">
     <p>{{message}}</p>
     <ul>
       <li ng-repeat="reason in reasons">{{reason}}</li>
