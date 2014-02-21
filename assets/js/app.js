@@ -12,7 +12,7 @@ var nodeCheck = angular.module('nodeCheck', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.
     when('/', {
-      templateUrl: 'partial.html', 
+      templateUrl: 'partials/partial.html', 
       controller: 'AppCtrl'
     }).
     otherwise({

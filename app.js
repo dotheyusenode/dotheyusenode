@@ -29,7 +29,7 @@ app.use(require('connect-assets')({
   helperContext: app.locals
 }))
 app.use(app.router)
-app.use(express.static(path.join(__dirname, 'assets/partials')))
+app.use(express.static(path.join(__dirname, 'assets/')))
 
 // development only
 if ('development' === app.get('env')) {
