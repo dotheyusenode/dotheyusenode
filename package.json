@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "express": "3.4.8",
-    "jade": "*",
+    "jade": "~1.1.5",
     "request": "~2.33.0",
     "async": "~0.2.10",
     "underscore": "~1.6.0",
@@ -16,7 +16,8 @@
     "coffeescript-detector": "0.0.1",
     "browserify-detector": "0.0.1",
     "src": "~0.1.0",
-    "redis-url": "~0.2.0"
+    "redis-url": "~0.2.0",
+    "connect-assets": "~3.0.0-beta1"
   },
   "devDependencies": {
     "should": "~3.1.2",

@@ -6,7 +6,6 @@
 var express = require('express')
 var http = require('http')
 var path = require('path')
-var fs = require('fs')
 
 var app = express()
 
@@ -26,8 +25,11 @@ app.use(express.logger('dev'))
 app.use(express.json())
 app.use(express.urlencoded())
 app.use(express.methodOverride())
+app.use(require('connect-assets')({
+  helperContext: app.locals
+}))
 app.use(app.router)
-app.use(express.static(path.join(__dirname, 'app')))
+app.use(express.static(path.join(__dirname, 'assets/')))
 
 // development only
 if ('development' === app.get('env')) {
@@ -38,13 +40,7 @@ app.get('/', function index(req, res) {
   if (req.query.url) {
     return urlHandler(req,res)
   } else {
-    fs.readFile('./app/old-index.html', function(err, bytes) {
-      if (err) {
-        res.send(404)
-      } else {
-        res.send(bytes.toString())
-      }
-    })
+    res.render('index')
   }
 })
 
