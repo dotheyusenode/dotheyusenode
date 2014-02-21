@@ -1,7 +1,8 @@
 var src = require('src')
+var red = require('./red')
 
 var cache = src({
-  url: process.env.REDISTOGO_URL,
+  url: red,
   expiry: 60 * 20 //20 minutes
 })
 

@@ -69,3 +69,21 @@ A successful response looks like:
 ###`DELETE /?url=foo.bar.com`
 
 Removes foo.bar.com's results from the redis cache
+
+
+###`GET /cache`
+
+Returns a list of cached urls
+
+```
+[
+  {
+    "url": "http://twitter.com",
+    "ttl": 906
+  },
+  {
+    "url": "http://ebay.com",
+    "ttl": 902
+  }
+]
+```
