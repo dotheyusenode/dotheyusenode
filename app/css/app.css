@@ -1,6 +1,7 @@
 /* app css stylesheet */
 body {
-  font-family: 'Archivo Black', sans-serif;
+  /*font-family: 'Archivo Black', sans-serif;*/
+  font-family: 'Lucida Grande';
   background-color: #e3ebf6;
   color: #224266;
 }
@@ -15,6 +16,9 @@ body {
 .btn-primary:hover, .btn-primary:focus {
   background-color: #a93860;
   border-color: #a93860;
+}
+.jumbotron {
+  background-color: #e3ebf6;
 }
 .menu {
   list-style: none;
