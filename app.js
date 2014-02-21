@@ -27,6 +27,7 @@ app.use(express.json())
 app.use(express.urlencoded())
 app.use(express.methodOverride())
 app.use(app.router)
+app.use(require('connect-assets')())
 app.use(express.static(path.join(__dirname, 'app')))
 
 // development only
@@ -38,13 +39,7 @@ app.get('/', function index(req, res) {
   if (req.query.url) {
     return urlHandler(req,res)
   } else {
-    fs.readFile('./app/old-index.html', function(err, bytes) {
-      if (err) {
-        res.send(404)
-      } else {
-        res.send(bytes.toString())
-      }
-    })
+    res.render('index')
   }
 })
 
