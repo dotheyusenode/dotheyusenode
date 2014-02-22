@@ -146,6 +146,7 @@ describe('do they use node?', function(){
       _.each(b, function(d) {
         d.should.have.property('url')
         d.should.have.property('count')
+        d.url.indexOf(require('../countPrefix')).should.be.equal(-1)
       })
       done()
     })
