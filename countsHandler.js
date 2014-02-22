@@ -11,9 +11,14 @@ module.exports = function(req, res) {
   }
 
   function getAll() {
+
+    function antiPrefix(k) {
+      return k.replace(countPrefix, '')
+    }
+
     function inflate(key, cb) {
       client.get(key, function(err, value) {
-        cb(err, { url: key, count: value })
+        cb(err, { url: antiPrefix(key), count: value })
       })
     }
 
