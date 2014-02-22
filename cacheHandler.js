@@ -1,5 +1,5 @@
 var async = require('async')
-var client = require('redis-url').connect(require('./red'))
+var client = require('./redisClient')
 var cache = require('./cache')
 
 module.exports = function(req, res) {

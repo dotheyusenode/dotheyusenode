@@ -87,3 +87,27 @@ Returns a list of cached urls
   }
 ]
 ```
+
+###`GET /counts`
+
+Returns a list of positive urls
+
+```
+[
+  {
+    "url": "http://substack.net",
+    "count": 42
+  }
+]
+```
+
+####`GET /counts?url=foo.bar.com`
+
+Returns an object with a count key.
+
+```
+{
+  "count": 17
+}
+```
+If the specified url isn't in redis, return a count of 0

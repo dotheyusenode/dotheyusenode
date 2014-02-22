@@ -108,4 +108,47 @@ describe('do they use node?', function(){
     async.each(urls, r, testCache)
   })
 
+  it('should count the number of times a success url gets', function(done) {
+
+    function makeRequest(a, cb) {
+      request(host, ops({qs: {url: host}}), function(e,r,b){
+        r.statusCode.should.be.equal(200)
+        cb()
+      })
+    }
+
+    function getCount(cb) {
+      request(host + '/counts', ops({qs: {url: host}}), function(e,r,b) {
+        r.statusCode.should.be.equal(200)
+        cb(b.count)
+      })
+    }
+
+    function makeXRequests(count, cb) {
+      async.eachSeries(_.range(0, count), makeRequest, cb)
+    }
+
+    var X = 100
+
+    getCount(function(count) {
+      makeXRequests(X, function() {
+        getCount(function(newCount) {
+          Number(newCount).should.be.equal(Number(count) + X)
+          done()
+        })
+      })
+    })
+  })
+
+  it('should get the count for all urls with positive results', function(done) {
+    request(host + '/counts', ops(), function(e,r,b) {
+      r.statusCode.should.be.equal(200)
+      _.each(b, function(d) {
+        d.should.have.property('url')
+        d.should.have.property('count')
+        d.url.indexOf(require('../countPrefix')).should.be.equal(-1)
+      })
+      done()
+    })
+  })
 })
