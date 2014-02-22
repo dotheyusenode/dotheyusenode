@@ -125,7 +125,7 @@ describe('do they use node?', function(){
     }
 
     function makeXRequests(count, cb) {
-      async.each(_.range(0, count), makeRequest, cb)
+      async.eachSeries(_.range(0, count), makeRequest, cb)
     }
 
     var X = 100
