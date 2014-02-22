@@ -32,8 +32,18 @@ function handler(url, callback) {
         if (obj.reasons.length > 0) {
           obj.answer = 'node activity detected';
         }
-        cache.set(url, JSON.stringify(obj), function() {
-          callback(null, obj);
+        function setCache(cb) {
+          cache.set(url, JSON.stringify(obj), cb)
+        }
+        function incUrl(cb) {
+          if (obj.reasons.length > 0) {
+            require('./redisClient').incr(require('./countPrefix') + url, cb)
+          } else {
+            cb()
+          }
+        }
+        async.parallel([setCache, incUrl], function() {
+          callback(null, obj)
         })
       });
 

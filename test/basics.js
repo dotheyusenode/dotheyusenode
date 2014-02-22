@@ -110,8 +110,11 @@ describe('do they use node?', function(){
 
   it('should count the number of times a success url gets', function(done) {
 
-    function makeRequest(cb) {
-      request(host, ops({qs: {url: host}}), cb)
+    function makeRequest(a, cb) {
+      request(host, ops({qs: {url: host}}), function(e,r,b){
+        r.statusCode.should.be.equal(200)
+        cb()
+      })
     }
 
     function getCount(cb) {
@@ -125,12 +128,12 @@ describe('do they use node?', function(){
       async.each(_.range(0, count), makeRequest, cb)
     }
 
-    var X = 100
+    var X = 10
 
     getCount(function(count) {
       makeXRequests(X, function() {
         getCount(function(newCount) {
-          newCount.should.be.equal(count + X)
+          Number(newCount).should.be.equal(Number(count) + X)
           done()
         })
       })
