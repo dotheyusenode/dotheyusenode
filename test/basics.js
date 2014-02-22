@@ -139,4 +139,15 @@ describe('do they use node?', function(){
       })
     })
   })
+
+  it('should get the count for all urls with positive results', function(done) {
+    request(host + '/counts', ops(), function(e,r,b) {
+      r.statusCode.should.be.equal(200)
+      _.each(b, function(d) {
+        d.should.have.property('url')
+        d.should.have.property('count')
+      })
+      done()
+    })
+  })
 })
