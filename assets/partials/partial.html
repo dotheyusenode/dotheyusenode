@@ -1,24 +1,20 @@
 <div class="container">
   <div class="jumbotron">
     <h1>node?js</h1>
-    <p>Does it use Node?</p>
-    <br/><br/>
+    <p>DOES IT USE NODE</p>
+    <br/>
     <input name="website.url" ng-model="website.url" placeholder="enter URL" type="text" class="form-control">
-    <br/><br />
-    <button class="btn btn-primary" ng-click="check()">Find out now</button>
+    <br/>
+    <button class="btn btn-primary" ng-click="check()">Find Out Now</button>
   </div>
   <div ng-show="displayResult">
-    <h3>Results for {{resultUrl}}</h3>
-    <img class="resultImg" ng-src={{img}}>
-    <p>{{message}}</p>
-    <ul>
-      <li ng-repeat="reason in reasons">{{reason}}</li>
-    </ul>
+    <div class="resultUrl">
+      <img class="resultImg" ng-src={{img}}>
+      <span>{{resultUrl}} {{message}}</span>
+        <p ng-repeat="reason in reasons">{{reason}}</p>
+    </div>
   </div>
   <div ng-show="displayError">
     <p>{{errorMsg}}</p>
-  </div>
-  <div class="footer">
-
   </div>
 </div>

@@ -6,8 +6,19 @@ body {
   color: #224266;
 }
 .resultImg {
+  margin-right: 15px;
   width: 50px;
   height: 50px;
+}
+.resultUrl {
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+}
+.resultUrl span {
+  display: inline-block;
+  vertical-align: middle;
+  line-height: normal; 
 }
 .btn-primary {
   background-color: #b03b69;
@@ -19,6 +30,18 @@ body {
 }
 .jumbotron {
   background-color: #e3ebf6;
+  margin-bottom: 5px;
+}
+.jumbotron h1 {
+  font-weight: bold;
+  font-size: 70px;
+}
+.jumbotron p {
+  font-size: 15px;
+}
+.jumbotron input {
+  font-size: 16px;
+  height: 45px;
 }
 .menu {
   list-style: none;
