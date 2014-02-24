@@ -15,6 +15,10 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: 'partials/partial.html', 
       controller: 'AppCtrl'
     }).
+    when('/credits', {
+      templateUrl: 'partials/about.html',
+      controller: 'AppCtrl'
+    }).
     otherwise({
       redirectTo: '/'
     });
