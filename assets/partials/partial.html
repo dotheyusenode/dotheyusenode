@@ -7,11 +7,14 @@
     <br/>
     <button class="btn btn-primary" ng-click="check()">Find Out Now</button>
   </div>
-  <div ng-show="displayResult">
-    <div class="resultUrl">
-      <img class="resultImg" ng-src={{img}}>
-      <span>{{resultUrl}} {{message}}</span>
-        <p ng-repeat="reason in reasons">{{reason}}</p>
+  <div class="result-container" ng-show="displayResult">
+    <img class="resultImg" ng-src={{img}}>
+    <!-- {{resultUrl}} -->
+    <div class="resultMsg">
+      <span class="resultUrl"> {{message}}</span>
+      <ul>
+        <li ng-repeat="reason in reasons">{{reason}}</li>
+      </ul>
     </div>
   </div>
   <div ng-show="displayError">

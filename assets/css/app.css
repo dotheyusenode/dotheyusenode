@@ -5,20 +5,23 @@ body {
   background-color: #e3ebf6;
   color: #224266;
 }
+.result-container {
+  margin-left: 200px;
+}
 .resultImg {
+  display: inline-block;
+  float: left;
   margin-right: 15px;
-  width: 50px;
-  height: 50px;
+  width: 75px;
+  height: 75px;
+}
+.resultMsg {
+  display: inline-block;
 }
 .resultUrl {
-  height: 50px;
   line-height: 50px;
   text-align: center;
-}
-.resultUrl span {
-  display: inline-block;
-  vertical-align: middle;
-  line-height: normal; 
+  font-size: 16px;
 }
 .btn-primary {
   background-color: #b03b69;
