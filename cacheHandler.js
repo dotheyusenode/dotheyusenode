@@ -1,7 +1,8 @@
 var async = require('async')
+var client = require('./redisClient')
+var cache = require('./cache')
 
 module.exports = function(req, res) {
-  var client = require('redis-url').connect(require('./red'))
 
   function handleKeys(err, keys) {
     if (err) {
@@ -10,7 +11,7 @@ module.exports = function(req, res) {
 
     async.map(keys, function(k, cb) {
       client.ttl(k, function(err, ttl) {
-        cb(err, {url: k, ttl: ttl})
+        cb(err, {url: k.replace(cache.id() + ':', ''), ttl: ttl})
       })
     }, function(err, results) {
       if (err) {
@@ -21,5 +22,5 @@ module.exports = function(req, res) {
     })
   }
 
-  client.keys('*', handleKeys)
+  cache.keys(handleKeys, { raw : true })
 }

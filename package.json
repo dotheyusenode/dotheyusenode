@@ -1,6 +1,6 @@
 {
   "name": "application-name",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "private": true,
   "scripts": {
     "start": "node app.js",
@@ -15,7 +15,7 @@
     "cheerio": "~0.13.1",
     "coffeescript-detector": "0.0.1",
     "browserify-detector": "0.0.1",
-    "src": "~0.1.0",
+    "src": "~1.1.2",
     "redis-url": "~0.2.0",
     "connect-assets": "~3.0.0-beta1"
   },

@@ -6,6 +6,14 @@ var _ = require('underscore');
 var cache = require('./cache')
 var normalizeUrl = require('./normalizeUrl')
 
+function incrUrl(obj, url, cb) {
+  if (obj.reasons.length > 0) {
+    require('./redisClient').incr(require('./countPrefix') + url, cb)
+  } else {
+    cb()
+  }
+}
+
 function handler(url, callback) {
   var obj = {
     url: url,
@@ -32,8 +40,14 @@ function handler(url, callback) {
         if (obj.reasons.length > 0) {
           obj.answer = 'node activity detected';
         }
-        cache.set(url, JSON.stringify(obj), function() {
-          callback(null, obj);
+        function setCache(cb) {
+          cache.set(url, JSON.stringify(obj), cb)
+        }
+        function iu(cb) {
+          incrUrl(obj, url, cb)
+        }
+        async.parallel([setCache, iu], function() {
+          callback(null, obj)
         })
       });
 
@@ -45,7 +59,10 @@ module.exports = function(url, callback) {
   url = normalizeUrl(url)
   cache.get(url, function(err, value) {
     if (value) {
-      callback(null, JSON.parse(value))
+      value = JSON.parse(value)
+      incrUrl(value, url, function() {
+        callback(null, value)
+      })
     } else {
       handler(url, callback)
     }
