@@ -100,6 +100,7 @@ describe('do they use node?', function(){
         _.each(b, function(hit) {
           hit.should.have.property('url')
           hit.should.have.property('ttl')
+          hit.should.have.property('nodeDetected')
         })
         done()
       });
