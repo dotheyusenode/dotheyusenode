@@ -79,11 +79,13 @@ Returns a list of cached urls
 [
   {
     "url": "http://twitter.com",
-    "ttl": 906
+    "ttl": 906,
+    "nodeDetected": true
   },
   {
     "url": "http://ebay.com",
-    "ttl": 902
+    "ttl": 902,
+    "nodeDetected": false
   }
 ]
 ```
