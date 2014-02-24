@@ -5,8 +5,8 @@ body {
   background-color: #e3ebf6;
   color: #224266;
 }
-.resultMsg {
-  margin-left: 120px;
+.result-container {
+  margin-left: 200px;
 }
 .resultImg {
   display: inline-block;
