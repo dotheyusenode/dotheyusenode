@@ -75,6 +75,14 @@ body {
   padding: 0;
 }
 
+/* /credits */
+.imgCredits {
+  margin-left: 20%;
+}
+.imgCredits h5 {
+  float: left;
+}
+/* Footer */
 .navbar.navbar-fixed-bottom {
   text-align: center;
 }
