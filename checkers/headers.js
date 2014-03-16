@@ -4,14 +4,15 @@ var frameworks = [
   {name: 'express.js', s: "express", h: 'x-powered-by'},
   {name: 'koa.js', s: 'koa', h: 'x-powered-by'},
   {name: 'sails.js', s: "sails", h: 'x-powered-by'},
-  {name: 'ecstatic', s: 'ecstatic', h: 'server'}
+  {name: 'ecstatic', s: 'ecstatic', h: 'server'},
+  {name: 'flatiron', s: 'flatiron', h: 'x-powered-by'}
 ]
 
 module.exports = function(r, body, cb) {
   var f = []
   _.each(frameworks, function(fr) {
 
-    var h = r.headers[fr.h]; 
+    var h = r.headers[fr.h];
     var checker = {
       name: fr.name,
       found: false,
