@@ -3,7 +3,7 @@
     <h1>node?js</h1>
     <p>DOES IT USE NODE</p>
     <br/>
-    <input name="website.url" ng-model="website.url" placeholder="enter URL" type="text" class="form-control">
+    <input name="website.url" ng-keyup="$event.keyCode == 13 ? check() : null" ng-model="website.url" placeholder="enter URL" type="text" class="form-control">
     <br/>
     <button class="btn btn-primary" ng-click="check()">Find Out Now</button>
   </div>
