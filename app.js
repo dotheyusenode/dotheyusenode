@@ -74,6 +74,6 @@ module.exports = function(cb) {
 
 if (process.env.APPYGRAM_KEY) {
   var appygram = require('appygram')
-  app.setApiKey(process.env.APPYGRAM_KEY)
+  appygram.setApiKey(process.env.APPYGRAM_KEY)
   app.use(appygram.errorHandler)
 }
