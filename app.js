@@ -71,3 +71,9 @@ http.createServer(app).listen(app.get('port'), function(){
 module.exports = function(cb) {
   done = cb
 }
+
+if (process.env.APPYGRAM_KEY) {
+  var appygram = require('appygram')
+  app.setApiKey(process.env.APPYGRAM_KEY)
+  app.use(appygram.errorHandler)
+}
