@@ -5,7 +5,8 @@ var frameworks = [
   {name: 'koa.js', s: 'koa', h: 'x-powered-by'},
   {name: 'sails.js', s: "sails", h: 'x-powered-by'},
   {name: 'ecstatic', s: 'ecstatic', h: 'server'},
-  {name: 'flatiron', s: 'flatiron', h: 'x-powered-by'}
+  {name: 'flatiron', s: 'flatiron', h: 'x-powered-by'},
+  {name: 'connect cookie', s: 'connect.sid', h: 'set-cookie'}
 ]
 
 module.exports = function(r, body, cb) {
@@ -18,7 +19,12 @@ module.exports = function(r, body, cb) {
       found: false,
       reasons: []
     }
-    if (h && h.toLowerCase().indexOf(fr.s) !== -1) {
+    if (fr.h === 'set-cookie') {
+      if (h && h[0] && h[0].toLowerCase().indexOf(fr.s) !== -1 ) {
+        checker.found = true;
+        checker.reasons.push('Found ' + fr.h + ': ' + h[0] + ' in response')
+      }
+    } else if (h && h.toLowerCase().indexOf(fr.s) !== -1) {
       checker.found = true
       checker.reasons.push('Found ' + fr.h + ': ' + h + ' header in response')
     }
